@@ -20,7 +20,7 @@ class ReusableCard extends StatelessWidget {
         margin: const EdgeInsets.all(1.0),
         decoration: BoxDecoration(
           color: colour,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(69.0),
         ),
       ),
     );

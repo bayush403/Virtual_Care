@@ -4,6 +4,7 @@ import 'screens/initial_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/registration_screen.dart';
 import 'screens/dashboard.dart';
+import 'screens/questions.dart';
 
 void main() => runApp(const MyApp());
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/SignIn': (context) => const SignIn(),
         '/Register2': (context) => const Regist2(),
         '/Dashboard': (context) => const Dashboard(),
+        '/Questions': (context) => const Questions(),
       },
     );
   }

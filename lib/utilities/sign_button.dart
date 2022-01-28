@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:virtual_care/constants.dart';
 
-class SignButton extends StatelessWidget {
+class SignButton extends StatefulWidget {
   // ignore: use_key_in_widget_constructors
   SignButton({required this.textDisplay, this.onPress, required this.color});
 
@@ -10,19 +10,24 @@ class SignButton extends StatelessWidget {
   Color color;
 
   @override
+  State<SignButton> createState() => _SignButtonState();
+}
+
+class _SignButtonState extends State<SignButton> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onPress,
+      onTap: widget.onPress,
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          color: widget.color,
           borderRadius: const BorderRadius.all(
             Radius.circular(1000),
           ),
         ),
         child: Center(
           child: Text(
-            textDisplay,
+            widget.textDisplay,
             style: kButtonText,
           ),
         ),

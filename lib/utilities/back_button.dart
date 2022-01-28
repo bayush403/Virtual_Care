@@ -8,14 +8,14 @@ class BackButtonCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft,
-      child: SizedBox(
-        height: 75,
+      child: Align(
+        alignment: Alignment.topLeft,
         child: TextButton(
           onPressed: () {
             Navigator.pop(context);
           },
           child: const Image(
+            height: 65,
             image: AssetImage('images/back.png'),
           ),
         ),

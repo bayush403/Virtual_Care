@@ -24,12 +24,21 @@ class RegistScreen extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              'Sign Up',
-              style: kHeaderStyle,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text(
+                  'Sign Up',
+                  style: kHeaderStyle,
+                ),
+                Image(
+                  height: 90,
+                  image: AssetImage('images/signup.png'),
+                ),
+              ],
             ),
             const SizedBox(
-              height: 50,
+              height: 30,
             ),
             const Text(
               'First Name',

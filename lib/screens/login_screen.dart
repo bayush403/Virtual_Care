@@ -20,9 +20,18 @@ class SignIn extends StatelessWidget {
             const SizedBox(
               height: 40,
             ),
-            const Text(
-              'Sign In',
-              style: kHeaderStyle,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text(
+                  'Sign In',
+                  style: kHeaderStyle,
+                ),
+                Image(
+                  height: 70,
+                  image: AssetImage('images/signin.png'),
+                ),
+              ],
             ),
             const SizedBox(
               height: 50,
