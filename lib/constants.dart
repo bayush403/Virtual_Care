@@ -33,3 +33,13 @@ const kLabelTextStyle = TextStyle(fontSize: 18.0, color: Color(0xFF8D8E98));
 
 const kNumbersTextStyle =
     TextStyle(fontSize: 40.0, fontWeight: FontWeight.w400);
+
+const kInactiveTab = Color(0xFF775ADA);
+
+const kNameStyle = TextStyle(
+  fontFamily: 'Nunito',
+  color: Colors.black54,
+  fontWeight: FontWeight.w600,
+  fontStyle: FontStyle.normal,
+  fontSize: 27.0,
+);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:virtual_care/constants.dart';
 import 'package:virtual_care/utilities/response_card.dart';
 
@@ -224,68 +223,11 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 75,
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        color: kInactiveCardColor,
-        child: Row(
-          children: [
-            Expanded(
-              child: BuildTabItem(
-                const Icon(
-                  FontAwesomeIcons.home,
-                ),
-              ),
-            ),
-            Expanded(
-              child: BuildTabItem(
-                const Icon(
-                  FontAwesomeIcons.gamepad,
-                ),
-              ),
-            ),
-            Opacity(
-              opacity: 0,
-              child: BuildTabItem(
-                const Icon(
-                  FontAwesomeIcons.chartPie,
-                ),
-              ),
-            ),
-            Expanded(
-              child: BuildTabItem(
-                const Icon(
-                  FontAwesomeIcons.chartPie,
-                ),
-              ),
-            ),
-            Expanded(
-              child: BuildTabItem(
-                const Icon(
-                  FontAwesomeIcons.userCircle,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kActiveCardColor,
-        onPressed: () {},
-        child: const Icon(FontAwesomeIcons.paperPlane),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
-}
-
-// ignore: non_constant_identifier_names
-Widget BuildTabItem(Icon icon) {
-  return IconButton(onPressed: () {}, icon: icon);
 }

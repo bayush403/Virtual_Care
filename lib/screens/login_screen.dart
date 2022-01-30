@@ -52,7 +52,7 @@ class SignIn extends StatelessWidget {
               color: const Color(0xFF404060),
               textDisplay: 'Sign In',
               onPress: () {
-                Navigator.pushNamed(context, '/Dashboard');
+                Navigator.pushNamed(context, '/MainPage');
               },
             )
           ],

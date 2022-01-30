@@ -224,7 +224,7 @@ class _Regist2State extends State<Regist2> {
                 color: const Color(0xFF404060),
                 textDisplay: 'Done!',
                 onPress: () {
-                  Navigator.pushNamed(context, '/Dashboard');
+                  Navigator.pushNamed(context, '/MainPage');
                 }),
           ],
         ),
