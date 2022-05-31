@@ -1,12 +1,13 @@
 // ignore_for_file: use_key_in_widget_constructors, avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:virtual_care/utilities/back_button.dart';
 import 'package:virtual_care/utilities/card_content.dart';
 import 'package:virtual_care/utilities/response_card.dart';
 import 'package:virtual_care/utilities/sign_button.dart';
-
 import '../constants.dart';
 
 enum Gender {
@@ -23,9 +24,29 @@ class Regist2 extends StatefulWidget {
 
 class _Regist2State extends State<Regist2> {
   Gender? selectedGender;
-  static int height = 180;
-  static int weight = 60;
-  int age = 25;
+  final _firestone = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
+  late User loggedInUser;
+  late int height = 120;
+  late String gender;
+  late int weight = 60;
+  late int age = 25;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+    print(loggedInUser.email);
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      loggedInUser = user!;
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +67,7 @@ class _Regist2State extends State<Regist2> {
                         setState(() {
                           selectedGender = Gender.male;
                         });
+                        gender = 'male';
                       },
                       colour: selectedGender == Gender.male
                           ? kActiveCardColor
@@ -60,6 +82,7 @@ class _Regist2State extends State<Regist2> {
                         setState(() {
                           selectedGender = Gender.female;
                         });
+                        gender = 'female';
                       },
                       colour: selectedGender == Gender.female
                           ? kActiveCardColor
@@ -224,6 +247,13 @@ class _Regist2State extends State<Regist2> {
                 color: const Color(0xFF404060),
                 textDisplay: 'Done!',
                 onPress: () {
+                  _firestone.collection('users').doc(loggedInUser.uid).update({
+                    'Email': loggedInUser.email,
+                    'Age': age,
+                    'Gender': gender,
+                    'Height': height,
+                    'Weight': weight,
+                  });
                   Navigator.pushNamed(context, '/MainPage');
                 }),
           ],

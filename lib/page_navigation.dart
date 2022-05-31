@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     const Dashboard(),
     const Funzone(),
     const Quiz(),
-    const Profile(),
+    Profile(),
   ];
 
   @override
@@ -34,7 +34,9 @@ class _MainPageState extends State<MainPage> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: kActiveCardColor,
           child: const Icon(FontAwesomeIcons.paperPlane),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/Message');
+          },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );

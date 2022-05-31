@@ -6,24 +6,35 @@ import 'package:virtual_care/utilities/sign_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class RegistScreen extends StatefulWidget {
-  const RegistScreen({Key? key}) : super(key: key);
+class RegistScreen1 extends StatefulWidget {
+  const RegistScreen1({Key? key}) : super(key: key);
 
   @override
-  State<RegistScreen> createState() => _RegistScreenState();
+  State<RegistScreen1> createState() => _RegistScreen1State();
 }
 
-class _RegistScreenState extends State<RegistScreen> {
+class _RegistScreen1State extends State<RegistScreen1> {
   final _auth = FirebaseAuth.instance;
   final _firestone = FirebaseFirestore.instance;
 
   late String name;
-
-  late String email;
-
-  late String password;
-
   late String mobileNumber;
+  late User loggedInUser;
+
+  @override
+  void initState() {
+    getCurrentUser();
+    super.initState();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      loggedInUser = user!;
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,38 +66,37 @@ class _RegistScreenState extends State<RegistScreen> {
                 height: 30,
               ),
               const Text(
-                'Email',
+                'Full Name',
                 style: kSubHeader,
               ),
               const SizedBox(
                 height: 10,
               ),
               TextField(
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.name,
                 textAlign: TextAlign.center,
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter Your Email ID'),
+                    hintText: 'Enter Your Full Name'),
                 onChanged: (value) {
-                  email = value;
+                  name = value;
                 },
               ),
               const SizedBox(
                 height: 30,
               ),
               const Text(
-                'Password',
+                'Mobile Number',
                 style: kSubHeader,
               ),
               const SizedBox(
                 height: 10,
               ),
               TextField(
-                obscureText: true,
                 textAlign: TextAlign.center,
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter Your Password'),
+                    hintText: 'Enter Mobile Number'),
                 onChanged: (value) {
-                  password = value;
+                  mobileNumber = value;
                 },
               ),
               const SizedBox(
@@ -96,13 +106,11 @@ class _RegistScreenState extends State<RegistScreen> {
                 color: const Color(0xFF404060),
                 textDisplay: 'Continue',
                 onPress: () async {
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    Navigator.pushNamed(context, '/Regist3');
-                  } catch (e) {
-                    print(e);
-                  }
+                  _firestone.collection('users').doc(loggedInUser.uid).set({
+                    'Phone': mobileNumber,
+                    'fullName': name,
+                  });
+                  Navigator.pushNamed(context, '/Register2');
                 },
               )
             ],
